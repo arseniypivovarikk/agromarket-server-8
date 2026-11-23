@@ -1,0 +1,14 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+const dir = path.dirname(fileURLToPath(import.meta.url));
+const root = path.resolve(dir, '..');
+process.env.NODE_ENV = 'test';
+process.env.JWT_SECRET ||= 'lab8-test-secret-not-production';
+process.env.ADMIN_EMAIL ||= 'admin@test.kz';
+process.env.ADMIN_PASSWORD ||= 'Admin12345';
+process.env.TEST_USERS_FILE ||= path.join(root, 'data/users.test.json');
+process.env.TEST_PRODUCTS_FILE ||= path.join(root, 'data/db.test.json');
+const seed = JSON.parse(fs.readFileSync(path.join(root, 'data/db.json'), 'utf8'));
+fs.writeFileSync(process.env.TEST_PRODUCTS_FILE, JSON.stringify(seed, null, 2));
+fs.writeFileSync(process.env.TEST_USERS_FILE, '[]');
