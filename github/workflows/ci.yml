@@ -1,0 +1,19 @@
+name: Server CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: agromarket-react/agromarket-server/package-lock.json
+      - run: npm install
+        working-directory: agromarket-react/agromarket-server
+      - run: npm test
+        working-directory: agromarket-react/agromarket-server
