@@ -1,4 +1,4 @@
-# AgroMarket Server — Лабораторная 7 (Пользователи и JWT)
+# AgroMarket Server — Лабораторная 8 (Пользователи и JWT)
 
 ## Запуск
 1. `cd agromarket-server`
